@@ -1,0 +1,8 @@
+<div class="challenge-instructions redux"><div><section id="description">
+<p>One solution from ES6 to help enforce state immutability in Redux is the spread operator: <code>...</code>. The spread operator has a variety of applications, one of which is well-suited to the previous challenge of producing a new array from an existing array. This is relatively new, but commonly used syntax. For example, if you have an array <code>myArray</code> and write:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">let</span> newArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>myArray<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>newArray</code> is now a clone of <code>myArray</code>. Both arrays still exist separately in memory. If you perform a mutation like <code>newArray.push(5)</code>, <code>myArray</code> doesn't change. The <code>...</code> effectively <em>spreads</em> out the values in <code>myArray</code> into a new array. To clone an array but add additional values in the new array, you could write <code>[...myArray, 'new value']</code>. This would return a new array composed of the values in <code>myArray</code> and the string <code>new value</code> as the last value. The spread syntax can be used multiple times in array composition like this, but it's important to note that it only makes a shallow copy of the array. That is to say, it only provides immutable array operations for one-dimensional arrays.</p>
+</section></div><hr/><div><section id="instructions">
+<p>Use the spread operator to return a new copy of state when a to-do is added.</p>
+</section></div><hr/></div>

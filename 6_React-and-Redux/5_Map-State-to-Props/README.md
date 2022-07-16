@@ -1,0 +1,7 @@
+<div class="challenge-instructions react-and-redux"><div><section id="description">
+<p>The <code>Provider</code> component allows you to provide <code>state</code> and <code>dispatch</code> to your React components, but you must specify exactly what state and actions you want. This way, you make sure that each component only has access to the state it needs. You accomplish this by creating two functions: <code>mapStateToProps()</code> and <code>mapDispatchToProps()</code>.</p>
+<p>In these functions, you declare what pieces of state you want to have access to and which action creators you need to be able to dispatch. Once these functions are in place, you'll see how to use the React Redux <code>connect</code> method to connect them to your components in another challenge.</p>
+<p><strong>Note:</strong> Behind the scenes, React Redux uses the <code>store.subscribe()</code> method to implement <code>mapStateToProps()</code>.</p>
+</section></div><hr/><div><section id="instructions">
+<p>Create a function <code>mapStateToProps()</code>. This function should take <code>state</code> as an argument, then return an object which maps that state to specific property names. These properties will become accessible to your component via <code>props</code>. Since this example keeps the entire state of the app in a single array, you can pass that entire state to your component. Create a property <code>messages</code> in the object that's being returned, and set it to <code>state</code>.</p>
+</section></div><hr/></div>

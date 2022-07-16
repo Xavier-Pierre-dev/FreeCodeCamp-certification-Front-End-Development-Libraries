@@ -1,0 +1,9 @@
+<div class="challenge-instructions react"><div><section id="description">
+<p>React also has an option to set default props. You can assign default props to a component as a property on the component itself and React assigns the default prop if necessary. This allows you to specify what a prop value should be if no value is explicitly provided. For example, if you declare <code>MyComponent.defaultProps = { location: 'San Francisco' }</code>, you have defined a location prop that's set to the string <code>San Francisco</code>, unless you specify otherwise. React assigns default props if props are undefined, but if you pass <code>null</code> as the value for a prop, it will remain <code>null</code>.</p>
+</section></div><hr/><div><section id="instructions">
+<p>The code editor shows a <code>ShoppingCart</code> component. Define default props on this component which specify a prop <code>items</code> with a value of <code>0</code>.</p>
+</section></div><hr/></div><div class="challenge-instructions react"><div><section id="description">
+<p>React also has an option to set default props. You can assign default props to a component as a property on the component itself and React assigns the default prop if necessary. This allows you to specify what a prop value should be if no value is explicitly provided. For example, if you declare <code>MyComponent.defaultProps = { location: 'San Francisco' }</code>, you have defined a location prop that's set to the string <code>San Francisco</code>, unless you specify otherwise. React assigns default props if props are undefined, but if you pass <code>null</code> as the value for a prop, it will remain <code>null</code>.</p>
+</section></div><hr/><div><section id="instructions">
+<p>The code editor shows a <code>ShoppingCart</code> component. Define default props on this component which specify a prop <code>items</code> with a value of <code>0</code>.</p>
+</section></div><hr/></div>

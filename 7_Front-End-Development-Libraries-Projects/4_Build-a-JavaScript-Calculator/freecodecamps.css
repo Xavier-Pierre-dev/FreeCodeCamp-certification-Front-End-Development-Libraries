@@ -1,0 +1,84 @@
+.container {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "dis dis dis dis"
+    "AC C div times"
+    "seven eight nine minus"
+    "four five six plus"
+    "one two three equal"
+    "zero zero dot equal"
+    ;
+}
+
+.padButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: gray;
+  color: white;
+  border: 1px solid black;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+.dis {
+  grid-area: dis;
+  background-color: black;
+}
+
+.zero{
+  grid-area: zero;
+}
+
+.equal{
+  grid-area: equal;
+}
+
+.dot{
+  grid-area: dot;
+}
+
+.dark-gray {
+  background-color: #333;
+}
+
+.red {
+  background-color: #AA0B00;
+}
+
+.equal {
+  background-color: #0E254C;
+}
+
+.answer {
+  color: white;
+}
+
+.dis input, .dis .answer {
+  width: 100%;
+  color: #fff;
+  background-color: black;
+  text-align: right;
+  border: none;
+  padding: 5px 20px;
+  font-size: 20px;
+}
+
+.dis .answer {
+  font-size: 30px;
+}
+
+input::placeholder{
+  color: white;
+}

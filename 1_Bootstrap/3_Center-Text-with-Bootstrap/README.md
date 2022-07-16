@@ -1,0 +1,6 @@
+<div class="challenge-instructions bootstrap"><div><section id="description">
+<p>Now that we're using Bootstrap, we can center our heading element to make it look better. All we need to do is add the class <code>text-center</code> to our <code>h2</code> element.</p>
+<p>Remember that you can add several classes to the same element by separating each of them with a space, like this:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red-text text-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>your text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+</section></div><hr/></div>

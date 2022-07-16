@@ -1,0 +1,8 @@
+<div class="challenge-instructions react"><div><section id="description">
+<p>The <code>if/else</code> statements worked in the last challenge, but there's a more concise way to achieve the same result. Imagine that you are tracking several conditions in a component and you want different elements to render depending on each of these conditions. If you write a lot of <code>else if</code> statements to return slightly different UIs, you may repeat code which leaves room for error. Instead, you can use the <code>&amp;&amp;</code> logical operator to perform conditional logic in a more concise way. This is possible because you want to check if a condition is <code>true</code>, and if it is, return some markup. Here's an example:</p>
+<pre class="language-jsx"><code class="language-jsx">{condition &amp;&amp; &lt;p&gt;markup&lt;/p&gt;}
+</code></pre>
+<p>If the <code>condition</code> is <code>true</code>, the markup will be returned. If the condition is <code>false</code>, the operation will immediately return <code>false</code> after evaluating the <code>condition</code> and return nothing. You can include these statements directly in your JSX and string multiple conditions together by writing <code>&amp;&amp;</code> after each one. This allows you to handle more complex conditional logic in your <code>render()</code> method without repeating a lot of code.</p>
+</section></div><hr/><div><section id="instructions">
+<p>Solve the previous example again, so the <code>h1</code> only renders if <code>display</code> is <code>true</code>, but use the <code>&amp;&amp;</code> logical operator instead of an <code>if/else</code> statement.</p>
+</section></div><hr/></div>

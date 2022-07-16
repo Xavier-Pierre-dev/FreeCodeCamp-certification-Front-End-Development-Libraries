@@ -1,0 +1,11 @@
+<div class="challenge-instructions bootstrap"><div><section id="description">
+<p>You can use spans to create inline elements. Remember when we used the <code>btn-block</code> class to make the button fill the entire row?</p>
+<p><button class="btn" style="background-color: rgb(0, 100, 0);  color: rgb(255, 255, 255);">normal button</button></p>
+<p><button class="btn btn-block" style="background-color: rgb(0, 100, 0);  color: rgb(255, 255, 255);">btn-block button</button></p>
+<p>That illustrates the difference between an "inline" element and a "block" element.</p>
+<p>By using the inline <code>span</code> element, you can put several elements on the same line, and even style different parts of the same line differently.</p>
+<p>Using a <code>span</code> element, nest the word <code>love</code> inside the <code>p</code> element that currently has the text <code>Things cats love</code>. Then give the <code>span</code> the class <code>text-danger</code> to make the text red.</p>
+<p>Here's how you would do this for the <code>p</code> element that has the text <code>Top 3 things cats hate</code>:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Top 3 things cats <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-danger<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>hate:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+</section></div><hr/></div>

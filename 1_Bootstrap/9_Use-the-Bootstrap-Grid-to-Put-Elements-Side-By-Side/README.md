@@ -1,0 +1,8 @@
+<div class="challenge-instructions bootstrap"><div><section id="description">
+<p>Bootstrap uses a responsive 12-column grid system, which makes it easy to put elements into rows and specify each element's relative width. Most of Bootstrap's classes can be applied to a <code>div</code> element.</p>
+<p>Bootstrap has different column width attributes that it uses depending on how wide the user's screen is. For example, phones have narrow screens, and laptops have wider screens.</p>
+<p>Take for example Bootstrap's <code>col-md-*</code> class. Here, <code>md</code> means medium, and <code>*</code> is a number specifying how many columns wide the element should be. In this case, the column width of an element on a medium-sized screen, such as a laptop, is being specified.</p>
+<p>In the Cat Photo App that we're building, we'll use <code>col-xs-*</code>, where <code>xs</code> means extra small (like an extra-small mobile phone screen), and <code>*</code> is the number of columns specifying how many columns wide the element should be.</p>
+<p>Put the <code>Like</code>, <code>Info</code> and <code>Delete</code> buttons side-by-side by nesting all three of them within one <code>&lt;div class="row"&gt;</code> element, then each of them within a <code>&lt;div class="col-xs-4"&gt;</code> element.</p>
+<p>The <code>row</code> class is applied to a <code>div</code>, and the buttons themselves can be nested within it.</p>
+</section></div><hr/></div>

@@ -1,0 +1,7 @@
+<div class="challenge-instructions react-and-redux"><div><section id="description">
+<p>Here you'll finish creating the <code>DisplayMessages</code> component.</p>
+</section></div><hr/><div><section id="instructions">
+<p>First, in the <code>render()</code> method, have the component render an <code>input</code> element, <code>button</code> element, and <code>ul</code> element. When the <code>input</code> element changes, it should trigger a <code>handleChange()</code> method. Also, the <code>input</code> element should render the value of <code>input</code> that's in the component's state. The <code>button</code> element should trigger a <code>submitMessage()</code> method when it's clicked.</p>
+<p>Second, write these two methods. The <code>handleChange()</code> method should update the <code>input</code> with what the user is typing. The <code>submitMessage()</code> method should concatenate the current message (stored in <code>input</code>) to the <code>messages</code> array in local state, and clear the value of the <code>input</code>.</p>
+<p>Finally, use the <code>ul</code> to map over the array of <code>messages</code> and render it to the screen as a list of <code>li</code> elements.</p>
+</section></div><hr/></div>

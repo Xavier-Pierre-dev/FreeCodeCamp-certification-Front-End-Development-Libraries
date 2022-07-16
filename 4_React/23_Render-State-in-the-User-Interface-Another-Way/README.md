@@ -1,0 +1,11 @@
+<div class="challenge-instructions react"><div><section id="description">
+<p>There is another way to access <code>state</code> in a component. In the <code>render()</code> method, before the <code>return</code> statement, you can write JavaScript directly. For example, you could declare functions, access data from <code>state</code> or <code>props</code>, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the <code>return</code> statement.</p>
+</section></div><hr/><div><section id="instructions">
+<p>In the <code>MyComponent</code> render method, define a <code>const</code> called <code>name</code> and set it equal to the name value in the component's <code>state</code>. Because you can write JavaScript directly in this part of the code, you don't have to enclose this reference in curly braces.</p>
+<p>Next, in the return statement, render this value in an <code>h1</code> tag using the variable <code>name</code>. Remember, you need to use the JSX syntax (curly braces for JavaScript) in the return statement.</p>
+</section></div><hr/></div><div class="challenge-instructions react"><div><section id="description">
+<p>There is another way to access <code>state</code> in a component. In the <code>render()</code> method, before the <code>return</code> statement, you can write JavaScript directly. For example, you could declare functions, access data from <code>state</code> or <code>props</code>, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the <code>return</code> statement.</p>
+</section></div><hr/><div><section id="instructions">
+<p>In the <code>MyComponent</code> render method, define a <code>const</code> called <code>name</code> and set it equal to the name value in the component's <code>state</code>. Because you can write JavaScript directly in this part of the code, you don't have to enclose this reference in curly braces.</p>
+<p>Next, in the return statement, render this value in an <code>h1</code> tag using the variable <code>name</code>. Remember, you need to use the JSX syntax (curly braces for JavaScript) in the return statement.</p>
+</section></div><hr/></div>

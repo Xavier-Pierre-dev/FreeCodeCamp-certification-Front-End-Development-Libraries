@@ -1,0 +1,5 @@
+<div class="challenge-instructions bootstrap"><div><section id="description">
+<p>Now let's get your form <code>input</code> and your submission <code>button</code> on the same line. We'll do this the same way we have previously: by using a <code>div</code> element with the class <code>row</code>, and other <code>div</code> elements within it using the <code>col-xs-*</code> class.</p>
+<p>Nest both your form's text <code>input</code> and submit <code>button</code> within a <code>div</code> with the class <code>row</code>. Nest your form's text <code>input</code> within a div with the class of <code>col-xs-7</code>. Nest your form's submit <code>button</code> in a <code>div</code> with the class <code>col-xs-5</code>.</p>
+<p>This is the last challenge we'll do for our Cat Photo App for now. We hope you've enjoyed learning Font Awesome, Bootstrap, and responsive design!</p>
+</section></div><hr/></div>

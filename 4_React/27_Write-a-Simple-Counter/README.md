@@ -1,0 +1,11 @@
+<div class="challenge-instructions react"><div><section id="description">
+<p>You can design a more complex stateful component by combining the concepts covered so far. These include initializing <code>state</code>, writing methods that set <code>state</code>, and assigning click handlers to trigger these methods.</p>
+</section></div><hr/><div><section id="instructions">
+<p>The <code>Counter</code> component keeps track of a <code>count</code> value in <code>state</code>. There are two buttons which call methods <code>increment()</code> and <code>decrement()</code>. Write these methods so the counter value is incremented or decremented by 1 when the appropriate button is clicked. Also, create a <code>reset()</code> method so when the reset button is clicked, the count is set to 0.</p>
+<p><strong>Note:</strong> Make sure you don't modify the <code>className</code>s of the buttons. Also, remember to add the necessary bindings for the newly-created methods in the constructor.</p>
+</section></div><hr/></div><div class="challenge-instructions react"><div><section id="description">
+<p>You can design a more complex stateful component by combining the concepts covered so far. These include initializing <code>state</code>, writing methods that set <code>state</code>, and assigning click handlers to trigger these methods.</p>
+</section></div><hr/><div><section id="instructions">
+<p>The <code>Counter</code> component keeps track of a <code>count</code> value in <code>state</code>. There are two buttons which call methods <code>increment()</code> and <code>decrement()</code>. Write these methods so the counter value is incremented or decremented by 1 when the appropriate button is clicked. Also, create a <code>reset()</code> method so when the reset button is clicked, the count is set to 0.</p>
+<p><strong>Note:</strong> Make sure you don't modify the <code>className</code>s of the buttons. Also, remember to add the necessary bindings for the newly-created methods in the constructor.</p>
+</section></div><hr/></div>
