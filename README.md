@@ -914,8 +914,6 @@ As you can see react is easier to use with functionnal component. Here are few a
 * [Differences between Functional Components and Class Components in React](https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/)
 * [React Class Component vs. Functional Component: What’s the Difference](https://www.telerik.com/blogs/react-class-component-vs-functional-component-how-choose-whats-difference)
 
-In case one day the article disapear or are hard to find, I have downloaded the articles.
-
 <br>
 
 <details>
