@@ -812,6 +812,32 @@ setRecordingPad((prev)=>prev + clipInfo.keyTrigger + " ");
 
 </td>
   </tr>
+  <tr>
+  <td>react lifecycle</td>
+  <td>
+
+```javascript
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+```
+</td>
+  <td>
+
+```javascript
+  React.useEffect(()=>{
+    document.addEventListener('keydown',handleKeyPress);
+    return () => {
+      document.addEventListener('keydown',handleKeyPress);
+    };
+  }, []);
+```
+react lifecycle can't be use inside functionnal component but you can use eventListener to reproduces behaviour for some cases.
+</td>
+  </tr>
 </tbody>
 </table>
 
