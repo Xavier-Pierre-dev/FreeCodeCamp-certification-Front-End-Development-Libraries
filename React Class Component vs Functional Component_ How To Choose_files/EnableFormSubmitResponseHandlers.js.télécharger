@@ -1,0 +1,76 @@
+﻿!function (send) {
+    XMLHttpRequest.prototype.send = function () {
+        var callback = this.onreadystatechange;
+        this.onreadystatechange = function () {
+            var responseUrl = this.XMLHttpRequestUrl;
+            
+            if (this.readyState == 4 &&
+                this.status == 200 &&
+                responseUrl &&
+                responseUrl.match(/(AjaxSubmit|PageAjaxSubmit|TemplateAjaxSubmit)(?=[/\r\n?]|$)/ig)) {
+
+                callMvcFormSubmitResponseHandlers(this);
+            }
+            if (this.readyState == 4 &&
+                responseUrl &&
+                responseUrl.match(/(AjaxSubmit|PageAjaxSubmit|TemplateAjaxSubmit)(?=[/\r\n?]|$)/ig) &&
+                (this.status >= 400 && this.status < 600 || this.status == 200 && isJson(this.response) && !JSON.parse(this.response).success)) {
+
+                callMvcFormSubmitErrorResponseHandlers(this)
+            }
+            if (callback) {
+                callback.apply(this, arguments)
+            }
+        }
+        send.apply(this, arguments)
+    }
+
+    var callMvcFormSubmitResponseHandlers = function (request) {
+        window.MvcFormSubmitResponseHandlers = window.MvcFormSubmitResponseHandlers || [];
+        var index;
+        for (index = 0; index < window.MvcFormSubmitResponseHandlers.length; index++) {
+            window.MvcFormSubmitResponseHandlers[index](request);
+        }
+    }
+
+    var callMvcFormSubmitErrorResponseHandlers = function (request) {
+        window.MvcFormSubmitErrorResponseHandlers = window.MvcFormSubmitErrorResponseHandlers || [];
+        var index;
+        for (index = 0; index < window.MvcFormSubmitErrorResponseHandlers.length; index++) {
+            window.MvcFormSubmitErrorResponseHandlers[index](request);
+        }
+    }
+
+    function isJson(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
+}(XMLHttpRequest.prototype.send);
+
+!function (open) {
+    XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
+        if (url.match(/(AjaxSubmit|PageAjaxSubmit|TemplateAjaxSubmit)(?=[/\r\n?]|$)/ig)) {
+            var widgetInstanceIdMatches = /(\?|\&)(widgetInstanceId)\=([^&]+)/gm.exec(url);
+
+            if (widgetInstanceIdMatches &&
+                widgetInstanceIdMatches.length > 3) {
+                this.WidgetInstanceId = widgetInstanceIdMatches[3];
+
+                var widgetInstanceParam = widgetInstanceIdMatches[0];
+                var splitUrl = url.split(widgetInstanceParam);
+                var hasOtherParams = splitUrl.length > 1 && (splitUrl[1] || splitUrl.length > 2);
+                var replaceText = widgetInstanceParam[0] == '?' && hasOtherParams ? '?' : "";
+
+                url = url.replace(widgetInstanceParam, replaceText);
+            }
+
+            this.XMLHttpRequestUrl = url;
+        }
+        open.apply(this, arguments);
+    };
+}(XMLHttpRequest.prototype.open);

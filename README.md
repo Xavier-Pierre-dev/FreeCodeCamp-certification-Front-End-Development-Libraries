@@ -274,7 +274,7 @@ During these project, I use css grid during the javascript calculator project an
 
 Of course you can do it with css flexbox only but for complexe layout that will take more time and make the process more painfull than using only css grid, and lead to a more long and complexe code. 
 
-<div align="center">
+<div align="center" >
 
 ![Alt text](./7_Front-End-Development-Libraries-Projects/4_Build-a-JavaScript-Calculator/app.PNG "screenshot")
 </div>
@@ -403,6 +403,525 @@ As you can see you define.
 }
 ```
 
+<br>
+
+### react function vs class
+
+<details>
+<summary>code comparaison</summary>
+
+<table>
+<thead>
+  <tr>
+    <th>class</th>
+    <th>function</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+
+```javascript
+class DrumMachine extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      volume: 1,
+      recording: "",
+      currentTouch: "",
+      speed: 0.3
+    };
+    
+  }
+  
+  recordingChange(param) {
+    this.setState({recording: this.state.recording + param + " ", currentTouch : param}, console.log("param + " + this.state.recording));
+    console.log(param)
+    
+  }
+  
+  
+
+  
+  clearRecording(){
+    console.log("yolo")
+    this.setState({recording: ""},);
+  }
+  
+  render()
+  { 
+  const playRecording = () => {
+    let index = 0;
+    let recordArray = this.state.recording.split(" ")
+    const interval = setInterval(()=>{
+      const audioTag = document.getElementById(recordArray[index]);
+      //set active to true and then after 200ms set to false with function setTimeout
+      //this.setState({active : true});
+      //setTimeout(()=>this.setState({active : false}), 200)
+      audioTag.volume = this.state.volume;
+      audioTag.currentTime = 0;
+      audioTag.play();
+      index++;
+    }, 1000 - 1000 * this.state.speed);
+    setTimeout(
+    ()=>clearInterval(interval), (1000 - 1000 * this.state.speed) * recordArray.length -1
+    );
+  }
+    
+      return (
+        <>
+        
+        
+          <div className="text-center">
+            <h2>Drum Machine</h2>
+            <div className="display text-center" id="display">
+              <h3>{this.state.currentTouch}</h3>
+              {audioClips.map((clip) => (
+                <Pad key={clip.id} clipInfo={clip} volumePad={this.state.volume} setRecordingPad={this.recordingChange.bind(this)} />
+              ))}
+              <div className="text-center card-bottom">
+                <br/>
+                <h3>Volume</h3>
+                <input type="range" step="0.01" onChange={(e)=>this.setState({volume:e.target.value})} value={this.state.volume} max="1" min="0" className="w-50"/>
+                <h3>{this.state.recording}</h3>
+                {this.state.recording && (
+                <>
+                <div className="btn-container">
+                    <button onClick={playRecording} className="btn btn-success">play</button>
+                    <button onClick={this.clearRecording.bind(this)} className="btn btn-danger">clear</button>
+                </div>
+                <h3>Play record speed</h3>
+                <input type="range" step="0.01" onChange={(eventSpeed)=>this.setState({speed:eventSpeed.target.value})} value={this.state.speed} max="1" min="0.1" className="w-50"/>
+                </>
+                )}  
+              </div>
+            </div>
+
+          </div>
+        
+      </>
+      );
+  }
+}
+
+class Pad extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false
+    };
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.playSound = this.playSound.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+
+  handleKeyPress(e) {
+    if (e.keyCode === this.props.clipInfo.keyCode) {
+      console.log(this.props.clipInfo.keyTrigger);
+      this.playSound();
+    }
+  }
+  
+  playSound(){
+    const audioTag = document.getElementById(this.props.clipInfo.keyTrigger);
+    //set active to true and then after 200ms set to false with function setTimeout
+    this.setState({active : true});
+    setTimeout(()=>this.setState({active : false}), 200)
+    audioTag.volume = this.props.volumePad;
+    audioTag.currentTime = 0;
+    audioTag.play();
+    this.props.setRecordingPad(this.props.clipInfo.keyTrigger)
+  }
+
+  
+  render()
+  {
+      return (
+        <div onClick={this.playSound} className={`drum-pad btn btn-secondary p-4 m-3 ${this.state.active && "btn-warning"}`} id={this.props.clipInfo.id} >
+          <audio className="clip" id={this.props.clipInfo.keyTrigger} src={this.props.clipInfo.url} />
+          {this.props.clipInfo.keyTrigger}
+        </div>
+    );
+  }
+}
+
+
+ReactDOM.render(<DrumMachine/>, document.getElementById('drum-machine'))
+```
+
+</td>
+    <td>
+
+```javascript
+function DrumMachine() {
+
+  const [volume, setVolume] = React.useState(1);
+  const [recording, setRecording] = React.useState("");
+  const [currentTouch, setCurrentTouch] = React.useState("");
+  const [speed, setSpeed] = React.useState(0.3);
+  
+  const recordingChange = (param) => {
+    setCurrentTouch(param);
+    setRecording(recording + param + " ");
+    
+    console.log("param + " + recording);
+    console.log(param);
+    
+  }
+  
+  
+
+  
+  const clearRecording = () => {
+    console.log("yolo");
+    setRecording("");
+  }
+  
+  const playRecording = () => {
+    let index = 0;
+    let recordArray = recording.split(" ")
+    const interval = setInterval(()=>{
+      const audioTag = document.getElementById(recordArray[index]);
+      //set active to true and then after 200ms set to false with function setTimeout
+      //this.setState({active : true});
+      //setTimeout(()=>this.setState({active : false}), 200)
+      audioTag.volume = volume;
+      audioTag.currentTime = 0;
+      audioTag.play();
+      index++;
+    }, 1000 - 1000 * speed);
+    setTimeout(
+      () => clearInterval(interval), 
+      (1000 - 1000 * speed) * recordArray.length -1
+    );
+  }
+  
+
+      return (
+        <>
+          <div className="text-center">
+            <h2>Drum Machine</h2>
+            <div className="display text-center" id="display">
+              <h3>{currentTouch}</h3>
+              {audioClips.map((clip) => (
+                <Pad key={clip.id} clipInfo={clip} volumePad={volume} setRecordingPad={setRecording} setCurrentPad={setCurrentTouch}/>
+              ))}
+              <div className="text-center card-bottom">
+                <br/>
+                <h3>Volume</h3>
+                <input type="range" step="0.01" onChange={(e)=>setVolume(e.target.value)} value={volume} max="1" min="0" className="w-50"/>
+                <h3>{recording}</h3>
+                {recording && (
+                <>
+                <div className="btn-container">
+                    <button onClick={playRecording} className="btn btn-success">play</button>
+                    <button onClick={clearRecording} className="btn btn-danger">clear</button>
+                </div>
+                <h3>Play record speed</h3>
+                <input type="range" step="0.01" onChange={(eventSpeed)=>setSpeed(eventSpeed.target.value)} value={speed} max="1" min="0.1" className="w-50"/>
+                </>
+                )}  
+              </div>
+            </div>
+
+          </div>
+      </>
+      );
+}
+
+function Pad({clipInfo, volumePad, setRecordingPad, setCurrentPad}) {
+  
+  
+  const [active, setActive] = React.useState(false);
+  
+  React.useEffect(()=>{
+    document.addEventListener('keydown',handleKeyPress);
+    return () => {
+      document.addEventListener('keydown',handleKeyPress);
+    };
+  }, []);
+
+  const handleKeyPress = (e) => {
+    if (e.keyCode === clipInfo.keyCode) {
+      console.log(clipInfo.keyTrigger);
+      playSound();
+    }
+  }
+  
+  const playSound = () => {
+    const audioTag = document.getElementById(clipInfo.keyTrigger);
+    //set active to true and then after 200ms set to false with function setTimeout
+    setActive(true);
+    setTimeout(()=>setActive(false), 200)
+    audioTag.volume = volumePad;
+    audioTag.currentTime = 0;
+    audioTag.play();
+    setCurrentPad(()=>clipInfo.keyTrigger);
+    //work also : setCurrentPad(clipInfo.keyTrigger);
+    //setCurrentPad(clipInfo.keyTrigger);
+    setRecordingPad((prev)=>prev + clipInfo.keyTrigger + " ");
+    
+  }
+
+  
+      return (
+        <div onClick={playSound} className={`drum-pad btn btn-secondary p-4 m-3 ${active && "btn-warning"}`} id={clipInfo.id} >
+          <audio className="clip" id={clipInfo.keyTrigger} src={clipInfo.url} />
+          {clipInfo.keyTrigger}
+        </div>
+    );
+}
+
+
+ReactDOM.render(<DrumMachine/>, document.getElementById('drum-machine'))
+```
+
+</td>
+  </tr>
+</tbody>
+</table>
+
+</details>
+
+
+
+<table>
+<thead>
+  <tr>
+    <th></th>
+    <th>class</th>
+    <th>function</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>define props</td>
+    <td>
+
+```javascript
+class Pad extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false
+    };
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.playSound = this.playSound.bind(this);
+  }
+```
+</td>
+    <td>
+
+```javascript
+function Pad({clipInfo, volumePad, setRecordingPad, setCurrentPad}) {
+```
+</td>
+  </tr>
+  <tr>
+    <td>access props</td>
+    <td>
+
+```javascript
+this.props.clipInfo.keyTrigger
+```
+</td>
+    <td>
+
+```javascript
+clipInfo.keyTrigger
+```    
+</td>
+  </tr>
+  <tr>
+    <td>components call</td>
+    <td>
+
+```javascript
+              {audioClips.map((clip) => (
+                <Pad key={clip.id} clipInfo={clip} volumePad={this.state.volume} setRecordingPad={this.recordingChange.bind(this)} />
+              ))}
+```
+
+</td>
+    <td>
+
+```javascript
+              {audioClips.map((clip) => (
+                <Pad key={clip.id} clipInfo={clip} volumePad={volume} setRecordingPad={setRecording} setCurrentPad={setCurrentTouch}/>
+              ))}
+```    
+</td>
+  </tr>
+  <tr>
+    <td>passing data child to parent and call a function</td>
+    <td>
+
+parent :
+```javascript
+setRecordingPad={this.recordingChange.bind(this)}
+```
+
+function call inside parent : 
+```javascript
+  recordingChange(param) {
+    this.setState({recording: this.state.recording + param + " ", currentTouch : param}, console.log("param + " + this.state.recording));
+    console.log(param)
+  }
+```
+
+children :
+```javascript
+this.props.setRecordingPad(this.props.clipInfo.keyTrigger)
+```
+
+here ```param``` equal ```this.props.clipInfo.keyTrigger``` because we set that inside the children ```this.props.setRecordingPad(this.props.clipInfo.keyTrigger)``` and the one of the props of the component is define like this inside the parent : ```setRecordingPad={this.recordingChange.bind(this)}```
+
+explaination :
+* [How to pass data from child component to its parent in ReactJS? [stackoverflow]](https://stackoverflow.com/questions/38394015/how-to-pass-data-from-child-component-to-its-parent-in-reactjs)
+* [Handling event [react documentation]](https://fr.reactjs.org/docs/handling-events.html)
+* [Pass function to composant [react documentation]](https://fr.reactjs.org/docs/faq-functions.html)
+
+</td>
+    <td>
+
+parent :
+```javascript
+setRecordingPad={setRecording}
+```
+
+function call inside parent : 
+```javascript
+  const recordingChange = (param) => {
+    setCurrentTouch(param);
+    setRecording(recording + param + " ");
+  }
+```
+
+children :
+```javascript
+setRecordingPad((prev)=>prev + clipInfo.keyTrigger + " ");
+```
+
+</td>
+  </tr>
+</tbody>
+</table>
+
+#### conclusion
+
+<table>
+   <tbody>
+      <tr>
+         <td><strong> &nbsp;Functional Components</td>
+         <td><strong> Class Components</strong></td>
+      </tr>
+      <tr>
+         <td>A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX).</td>
+         <td>A class component requires you to extend from React. Component and create a render function which returns a React element.</td>
+      </tr>
+      <tr>
+         <td>There is no render method used in functional components.</td>
+         <td>It must have the render() method returning JSX (which is syntactically similar to HTML)</td>
+      </tr>
+      <tr>
+         <td>Functional component run from top to bottom and once the function is returned it cant be kept alive.</td>
+         <td>Class component is instantiated and different life cycle method is kept alive and being run and invoked depending on phase of class component.</td>
+      </tr>
+      <tr>
+         <td>Also known as Stateless components as they simply accept data and display them in some form, that they are mainly responsible for rendering UI.</td>
+         <td>Also known as Stateful components because they implement logic and state.</td>
+      </tr>
+      <tr>
+         <td><strong>React lifecycle methods (for example, componentDidMount) cannot be used in functional components.</strong> 
+
+* [react component lifecycle [react documentation]](https://fr.reactjs.org/docs/state-and-lifecycle.html)
+
+</td>
+         <td><strong>React lifecycle methods can be used inside class components (for example, componentDidMount).</strong></td>
+      </tr>
+      <tr>
+         <td>
+            <p>Hooks can be easily used in functional components to make them Stateful.</p>
+            <p>example: 
+
+```javascript
+const [name,SetName]= React.useState(‘ ‘)
+```
+
+</p>
+         </td>
+         <td>
+            <p>It requires different syntax inside a class component to implement hooks.</p>
+            <p>example: 
+
+```javascript
+constructor(props) {
+
+   super(props);
+
+   this.state = {name: ‘ ‘}
+
+}
+```
+
+</p>
+
+</td>
+      </tr>
+      <tr>
+         <td>Constructors are not used.</td>
+         <td>Constructor are used as it needs to store state.&nbsp;</td>
+      </tr>
+   </tbody>
+</table>
+
+As you can see react is easier to use with functionnal component. Here are few article about that topics and that's also what I think about it, this is also recommended by the react team himself to use functionnal components for react instead of class :
+* [React: class components vs function components](https://dev.to/colocodes/react-class-components-vs-function-components-23m6)
+* [Differences between Functional Components and Class Components in React](https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/)
+* [React Class Component vs. Functional Component: What’s the Difference](https://www.telerik.com/blogs/react-class-component-vs-functional-component-how-choose-whats-difference)
+
+In case one day the article disapear or are hard to find, I have downloaded the articles.
+
+<br>
+
+<details>
+<summary>How To Choose Between Function or Class Component <a href="https://www.telerik.com/blogs/react-class-component-vs-functional-component-how-choose-whats-difference">[extract from blog]</a></summary>
+
+<br>
+
+After explaining the differences between the two components and how they are used to build components in React, we will look into how to choose between class and functional components in this section. And also learn reasons why to always consider functional components in your new React applications.
+
+Nonetheless, this is not a judgment between the two. From experience, React developers have different opinions and preferences between the two components. So if you have different opinions about this section, kindly share and engage me in the comment section.
+
+Before we proceed, we need to understand why functional components were introduced to replace the class component. According to the React team, these are the motivations for introducing hooks in functional components:
+* It is hard to reuse stateful logic between components in the class component.
+* Complex components are hard to understand in the class component.
+* Class confuses both people and machines.
+
+Read more in full detail about the motivations in the React Docs.
+
+__The React team recommended that new apps should be built with functional components and hooks__. So, you should really consider the functional component approach when working with a new React project—unless your team prefers the class-based approach. But, if you’re new to React, the knowledge of the class component also comes in handy. Perhaps you might need to migrate a legacy codebase written with a class component to a functional component.
+
+In my personal opinion, I will share with you my experience working with both class and functional components. Why you should always choose functional components:
+
+* Functional components with hooks are concise and more straightforward to code with. They perform exactly as the class component; this implies no difference between the two other than syntax.
+* By using just functional components in your project, you drastically eliminate the need to refactor the class component into a functional component when it grows.
+* Since classes confuse both people and machines, most especially the this keyword, you don’t have to worry about this anymore in functional components.
+* No need for unnecessary method binding like we always do in the class component.
+* Sharing stateful logic between components is tedious in a class-based approach.
+
+Besides, the React team recently announced React docs will be focusing on explaining React using functional components and hooks. This update doesn’t mean the class component will be deprecated—it will still be around for years to come. Likewise, the class component docs will still be available for developers that need to use them.
+
+
+</details>
 
 
 ## __Storytelling__ : Why did i decid to get this certification ? 
